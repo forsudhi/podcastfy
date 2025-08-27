@@ -73,7 +73,7 @@ def process_content(
 
         if transcript_file:
             logger.info(f"Using transcript file: {transcript_file}")
-            with open(transcript_file, "r") as file:
+            with open(transcript_file, "r", encoding='utf-8') as file:
                 qa_content = file.read()
         else:
             # Initialize content_extractor if needed
