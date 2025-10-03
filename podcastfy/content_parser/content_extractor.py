@@ -90,7 +90,7 @@ class ContentExtractor:
 
 			model = genai.GenerativeModel('models/gemini-2.5-flash')
 			topic_prompt = f'Be detailed. Search for {topic}'
-			response = model.generate_content(contents=topic_prompt, tools='google_search_retrieval')
+			response = model.generate_content(contents=topic_prompt, tools='google_search')
 			
 			return response.candidates[0].content.parts[0].text
 		except Exception as e:
