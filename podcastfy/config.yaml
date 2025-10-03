@@ -1,7 +1,7 @@
 content_generator:
-  llm_model: "gemini-1.5-pro-latest"
-  meta_llm_model: "gemini-1.5-pro-latest"
-  max_output_tokens: 8192
+  llm_model: "gemini-2.5-pro"
+  meta_llm_model: "gemini-2.5-pro"
+  max_output_tokens: 65536
   prompt_template: "souzatharsis/podcastfy_multimodal_cleanmarkup"
   prompt_commit: "b2365f11"
   longform_prompt_template: "souzatharsis/podcastfy_longform"
