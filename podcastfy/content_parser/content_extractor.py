@@ -86,13 +86,31 @@ class ContentExtractor:
 			str: Generated content based on the topic.
 		"""
 		try:
-			import google.generativeai as genai
+				from google import genai
+				from google.genai import types
+				from dotenv import load_dotenv
+				import os
 
-			model = genai.GenerativeModel('models/gemini-2.5-flash')
-			topic_prompt = f'Be detailed. Search for {topic}'
-			response = model.generate_content(contents=topic_prompt, tools='google_search')
-			
-			return response.candidates[0].content.parts[0].text
+				load_dotenv(override=True)
+
+				client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+
+				grounding_tool = types.Tool(
+					google_search=types.GoogleSearch()
+				)
+
+				config = types.GenerateContentConfig(
+					tools=[grounding_tool]
+				)
+
+				response = client.models.generate_content(
+					model="gemini-2.5-flash",
+					contents=f'Be detailed. Search for {topic}',
+					config=config,
+				)
+
+				return(response.text)
+
 		except Exception as e:
 			logger.error(f"Error generating content for topic '{topic}': {str(e)}")
 			raise
