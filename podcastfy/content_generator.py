@@ -706,7 +706,7 @@ class ContentGenerator:
     def __init__(
         self, 
         is_local: bool=False, 
-        model_name: str="gemini-1.5-pro-latest", 
+        model_name: str="gemini-2.5-pro", 
         api_key_label: str="GEMINI_API_KEY",
         conversation_config: Optional[Dict[str, Any]] = None
     ):
@@ -899,7 +899,7 @@ class ContentGenerator:
 
             # Save output if requested
             if output_filepath:
-                with open(output_filepath, "w") as file:
+                with open(output_filepath, "w", encoding='utf-8') as file:
                     file.write(self.response)
                 logger.info(f"Response content saved to {output_filepath}")
                 print(f"Transcript saved to {output_filepath}")
